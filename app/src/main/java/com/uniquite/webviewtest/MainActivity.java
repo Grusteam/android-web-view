@@ -16,13 +16,25 @@ public class MainActivity extends AppCompatActivity {
 
         webview =(WebView)findViewById(R.id.webView);
 
+        webview.setWebContentsDebuggingEnabled(true);
+
+
         webview.setWebViewClient(new WebViewClient());
         webview.clearCache(true);
         webview.clearHistory();
         webview.getSettings().setJavaScriptEnabled(true);
         webview.getSettings().setDomStorageEnabled(true);
         webview.setOverScrollMode(WebView.OVER_SCROLL_NEVER);
-        webview.loadUrl("https://app.iki.ai/");
+        webview.loadUrl("http://app.iki.ai");
 
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (webview.canGoBack()) {
+            webview.goBack();
+        } else {
+            super.onBackPressed();
+        }
     }
 }
